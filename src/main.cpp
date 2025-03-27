@@ -1,18 +1,29 @@
 #include <Arduino.h>
 
-// put function declarations here:
-int myFunction(int, int);
+#define DELAY_TIME 1000
+#define p9 9
+#define p10 10
+#define p11 11
 
-void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+
+void setup()
+{
+  pinMode(p9, OUTPUT);
+  pinMode(p10, OUTPUT);
+  pinMode(p11, OUTPUT);
 }
 
-void loop() {
-  // put your main code here, to run repeatedly:
-}
+void loop()
+{
+  analogWrite(p9, 255);
+  delay(DELAY_TIME);
+  analogWrite(p9, 50);
 
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
+  analogWrite(p10, 255);
+  delay(DELAY_TIME);
+  analogWrite(p10, 50);
+
+  analogWrite(p11, 255);
+  delay(DELAY_TIME);
+  analogWrite(p11, 50);
 }

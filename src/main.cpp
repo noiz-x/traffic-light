@@ -1,29 +1,24 @@
 #include <Arduino.h>
 
-#define DELAY_TIME 1000
-#define p9 9
-#define p10 10
-#define p11 11
-
+#define POT_PIN A5
+#define LED_PIN 11
 
 void setup()
 {
-  pinMode(p9, OUTPUT);
-  pinMode(p10, OUTPUT);
-  pinMode(p11, OUTPUT);
+  pinMode(POT_PIN, INPUT);
+  pinMode(LED_PIN, OUTPUT);
+  Serial.begin(115200);
 }
 
 void loop()
 {
-  analogWrite(p9, 255);
-  delay(DELAY_TIME);
-  analogWrite(p9, 50);
+  int potValue = analogRead(POT_PIN);
+  // Serial.println(potValue);
 
-  analogWrite(p10, 255);
-  delay(DELAY_TIME);
-  analogWrite(p10, 50);
+  // Map the analog value (0-1023) to PWM range (0-255)
+  int brightness = map(potValue, 0, 1023, 0, 255);
+  analogWrite(LED_PIN, brightness);
+  Serial.println(map(potValue, 0, 1023, 0.0, 5.0));
 
-  analogWrite(p11, 255);
-  delay(DELAY_TIME);
-  analogWrite(p11, 50);
+  delay(100);
 }
